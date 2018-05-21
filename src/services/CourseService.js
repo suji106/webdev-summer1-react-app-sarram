@@ -32,6 +32,12 @@ class CourseService {
             return response.json();
         })
     }
+    deleteCourse(courseId) {
+        console.log("deletingCourseService");
+        return fetch(COURSE_API_URL + '/' + courseId, {
+            method: 'DELETE'
+        })
+    }
 }
 
 export default CourseService;
