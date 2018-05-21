@@ -13,6 +13,7 @@ class CourseList extends React.Component {
     this.findAllCourses();
   }
   findAllCourses() {
+    console.log("findingAllCourses")
     this.courseService
       .findAllCourses()
       .then((courses) => {
@@ -57,7 +58,7 @@ class CourseList extends React.Component {
             <tr>
               <th><input onChange={this.titleChanged}
                          className="form-control" id="titleFld"
-                         placeholder="CS5001"/></th>
+                         placeholder="CS5000"/></th>
               <th><button onClick={this.createCourse}
                           className="btn btn-primary">
                 Add</button></th>
