@@ -1,5 +1,43 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+#courseManager {
+    font-size: 30px;
+    margin-top: 90px;
+}
+
+#courseHeading {
+    margin-top: 90px;
+    background-color: deepskyblue;
+    padding-right: 10px;
+}
+
+#sortRows{
+    padding-left: 10px;
+}
+
+.fa fa-file-text {
+     padding-left: 30px;
+ }
+
+#courseTitle {
+    padding-left: 20px;
+}
+
+#courseListHeader {
+    text-align: left;
+    font-size: 15px;
+}
+
+.owned_by_last_mod {
+    text-align: left;
+    font-size: 20px;
+    margin-left: 60px;
+}
+
+#modulesListDiv {
+    margin-top: 75px;
 }

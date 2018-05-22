@@ -15,6 +15,7 @@ class CourseService {
     }
 
     findAllCourses() {
+        console.log("findCoursesCourseService");
         return fetch(COURSE_API_URL)
             .then(function (response) {
                 return response.json();
@@ -22,8 +23,16 @@ class CourseService {
     }
 
     createCourse(course) {
+        var date = new Date();
+        var course_json = {
+            title: course.title,
+            created: date.getTime(),
+            modified: date.getTime(),
+        };
+        var j = JSON.stringify(course_json);
+        console.log(j);
         return fetch(COURSE_API_URL, {
-            body: JSON.stringify(course),
+            body: j,
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -32,11 +41,30 @@ class CourseService {
             return response.json();
         })
     }
+
     deleteCourse(courseId) {
         console.log("deletingCourseService");
         return fetch(COURSE_API_URL + '/' + courseId, {
             method: 'DELETE'
-        })
+        });
+    }
+
+    getCourseById(courseId) {
+        console.log("gettingCourseByIdCourseService");
+        var url = COURSE_API_URL + '/' + courseId;
+        console.log(url);
+        var r = fetch(url).then((response) => {console.log("ss");
+            return "aaa";
+        });
+        return "Course Modules";
+    }
+
+    waiter (response) {
+        console.log("lllllllllllll");
+        var resp = response;
+        // var s = resp.json();
+        console.log(resp);
+        return "WD";
     }
 }
 
