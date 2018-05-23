@@ -66,6 +66,9 @@ export default class ModuleList extends Component {
 
         this.moduleService
             .createModule(this.props.courseId, this.state.module).then(this.xyz);
+        this.setState({
+            module: {title: ''}
+        });
     }
 
     xyz(){

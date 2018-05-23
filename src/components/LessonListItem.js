@@ -51,13 +51,6 @@ export default class LessonListItem
         console.log("mountedModuleList");
     }
 
-    // componentWillReceiveProps(newProps) {
-    //     console.log("inside will receive");
-    //     console.log(newProps);
-    //     this.setModuleId(newProps.moduleId);
-    //     this.findAllLessonsForModule(newProps.moduleId)
-    // }
-
     deleteLesson() {
         console.log("deletingLesson");
         this.lessonService
@@ -90,27 +83,22 @@ export default class LessonListItem
                 <li className="nav-item nav-link">
                     {lesson.title}
                     {/*{self.setLessonId(lesson.id)}*/}
-                    <button onClick={self.deleteLesson.bind(self)}>x</button>
+                    <button onClick={self.deleteLesson}>x</button>
                 </li>
             );
         });
-
         console.log(lessons);
         return lessons;
-
-        // return (
-        //     <div className="row">
-        //         <li className="nav-item"><a className="nav-link active"
-        //                                     href="/courses">Active Tab</a></li>
-        //         <li className="nav-item"><a className="nav-link"
-        //                                     href="#">Another Tab</a></li>
-        //     </div>);
     }
 
     createLesson() {
         console.log("creatingLesson");
         this.lessonService
             .createLesson(this.state.moduleId, this.state.lesson.title).then(this.abc);
+
+        this.setState({
+            lesson: {title: ''}
+        });
     }
 
     titleChanged(event) {
