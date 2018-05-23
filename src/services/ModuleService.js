@@ -28,7 +28,7 @@ export default class ModuleService {
         var date = new Date();
         var model_json = {
             title: module.title,
-            modified: date.getTime(),
+            modified: date.getTime()
         };
 
         // console.log()

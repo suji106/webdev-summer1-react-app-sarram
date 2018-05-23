@@ -20,7 +20,6 @@ export default class ModuleList extends Component {
         this.getCourseById = this.getCourseById.bind(this);
         this.moduleService = ModuleService.instance;
         this.courseService = CourseService.instance;
-        this.self = this;
     }
 
     setModules(modules) {

@@ -1,6 +1,6 @@
 const LESSON_API_URL =
     'http://localhost:8080/api/course/MID/lesson';
-const MODULE_DELETE_API_URL =
+const LESSON_DELETE_CREATE_API_URL =
     'http://localhost:8080/api/lesson';
 
 let _singleton = Symbol();
@@ -21,8 +21,37 @@ export default class LessonService {
                 var j = response.json();
                 // console.log(j);
                 return j;
-            })
+            });
     }
+
+    deleteLesson(lessonId) {
+        console.log("deletingLesson");
+        console.log(lessonId);
+        return fetch(
+            LESSON_DELETE_CREATE_API_URL +  '/' + lessonId,
+            {
+                method: 'DELETE'
+            });
+    }
+
+    createLesson(moduleId, title) {
+        console.log("creatingLessonService");
+        console.log(moduleId);
+        var date = new Date();
+        var lesson_json = {
+            title: title,
+            modified: date.getTime()
+        };
+        return fetch(
+            LESSON_DELETE_CREATE_API_URL + '/' + moduleId,
+            {
+                body: JSON.stringify(lesson_json),
+                headers: {'Content-Type': 'application/json'},
+                method: 'POST'
+            });
+    }
+
+
 
     // createModule(courseId, module) {
     //     // console.log("creatingModule");
@@ -42,23 +71,6 @@ export default class LessonService {
     //         return response.json();
     //     })
     // }
-
-    deleteModule(courseId, moduleId) {
-        // console.log("deletingModule");
-        var date = new Date();
-        var model_json = {
-            id: moduleId,
-            modified: date.getTime(),
-        };
-
-        // console.log(model_json);
-        return fetch(MODULE_DELETE_API_URL + '/' + parseInt(moduleId, 10),
-            {
-                body: JSON.stringify(model_json),
-                headers: {'Content-Type': 'application/json'},
-                method: 'DELETE'
-            });
-    }
 
     static get instance() {
         console.log("insideLessonServiceInstance");
