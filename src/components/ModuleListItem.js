@@ -1,6 +1,7 @@
 import React from 'react';
-import {BrowserRouter as Router, Link} from 'react-router-dom'
+import {BrowserRouter as Router, Link, Route} from 'react-router-dom'
 import ModuleService from "../services/ModuleService";
+import LessonTabs from "../containers/LessonTabs";
 
 export default class ModuleListItem
     extends React.Component {
@@ -9,26 +10,28 @@ export default class ModuleListItem
         this.state = props;
         this.deleteModuleItem = this.deleteModuleItem.bind(this);
         this.moduleService = ModuleService.instance;
-        console.log(this.state);
+        // console.log(this.state);
     }
 
     deleteModuleItem() {
-        console.log(this.state.module);
+        // console.log(this.state.module);
         this.moduleService
             .deleteModule(this.props.courseId, this.props.module.id).then(this.props.callback);
     }
 
     render() {
         var title = this.state.module.title;
+        console.log("renderingModuleList");
+        console.log(this.props);
         return (
-            <Router>
-                <Link to="/course/12" className="list-group-item">
-                    {title}
-                    <span className="float-right">
+                <div>
+                    <Link to={`/course/${this.props.courseId}/${this.props.module.id}`} className="list-group-item">
+                        {title}
+                        <span className="float-right">
                         <i className="fa fa-trash" onClick={this.deleteModuleItem}></i>
                     </span>
-                </Link>
-            </Router>
+                    </Link>
+                </div>
         );
     }
 }

@@ -6,32 +6,32 @@ const MODULE_DELETE_API_URL =
 let _singleton = Symbol();
 export default class ModuleService {
     constructor(singletonToken) {
-        console.log("insideModuleServiceConstructor");
+        // console.log("insideModuleServiceConstructor");
         if (_singleton !== singletonToken)
             throw new Error('Singleton!!!');
     }
 
     findAllModulesForCourse(courseId) {
-        console.log("fetchingAllModules");
+        // console.log("fetchingAllModules");
         return fetch(
             MODULE_API_URL
                 .replace('CID', courseId))
             .then(function (response) {
                 var j = response.json();
-                console.log(j);
+                // console.log(j);
                 return j;
             })
     }
 
     createModule(courseId, module) {
-        console.log("creatingModule");
+        // console.log("creatingModule");
         var date = new Date();
         var model_json = {
             title: module.title,
             modified: date.getTime(),
         };
 
-        console.log()
+        // console.log()
         return fetch(MODULE_API_URL.replace('CID', courseId),
             {
                 body: JSON.stringify(model_json),
@@ -43,14 +43,14 @@ export default class ModuleService {
     }
 
     deleteModule(courseId, moduleId) {
-        console.log("deletingModule");
+        // console.log("deletingModule");
         var date = new Date();
         var model_json = {
             id: moduleId,
             modified: date.getTime(),
         };
 
-        console.log(model_json);
+        // console.log(model_json);
         return fetch(MODULE_DELETE_API_URL + '/' + parseInt(moduleId, 10),
             {
                 body: JSON.stringify(model_json),
@@ -61,10 +61,10 @@ export default class ModuleService {
 
 
     static get instance() {
-        console.log("insideModuleServiceInstance");
+        // console.log("insideModuleServiceInstance");
         if (!this[_singleton])
             this[_singleton] = new ModuleService(_singleton);
-        console.log(this[_singleton]);
+        // console.log(this[_singleton]);
         return this[_singleton]
     }
 }

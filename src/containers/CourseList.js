@@ -1,4 +1,5 @@
 import React from 'react';
+import {BrowserRouter as Router, Link} from 'react-router-dom'
 import CourseRow from "../components/CourseRow";
 import CourseService from "../services/CourseService";
 
@@ -9,6 +10,7 @@ class CourseList extends React.Component {
         this.courseService = CourseService.instance;
         this.titleChanged = this.titleChanged.bind(this);
         this.createCourse = this.createCourse.bind(this);
+        this.findAllCourses = this.findAllCourses.bind(this);
     }
 
     componentDidMount() {
@@ -17,6 +19,9 @@ class CourseList extends React.Component {
 
     findAllCourses() {
         console.log("findingAllCourses")
+        console.log(this);
+
+
         this.courseService
             .findAllCourses()
             .then((courses) => {
@@ -27,14 +32,14 @@ class CourseList extends React.Component {
 
     renderCourseRows() {
         let courses = null;
-
+        let self = this;
         console.log("renderCourseRows")
         console.log(this.state)
         if (this.state) {
             courses = this.state.courses.map(
                 function (course) {
                     return <CourseRow key={course.id}
-                                      course={course}/>
+                                      course={course} callback = {self.findAllCourses}/>
                 }
             )
         }
@@ -59,15 +64,13 @@ class CourseList extends React.Component {
     }
 
     render() {
+        console.log("renderingCoursesList");
         return (
             <div>
-                <h2>Course List</h2>
                 <table className="table">
                     <thead>
-                    <tr>
-                        <th>Title</th>
-                    </tr>
-                    <tr>
+                    <tr id="courseHeading">
+                        <th id="courseManager">Course Manager</th>
                         <th><input onChange={this.titleChanged}
                                    className="form-control" id="titleFld"
                                    placeholder="CS5000"/></th>
@@ -77,6 +80,23 @@ class CourseList extends React.Component {
                                 Add
                             </button>
                         </th>
+                    </tr>
+                    <tr id="courseListHeader">
+                        <td>
+                            Title
+                        </td>
+                        <td>
+                            Owned By
+                        </td>
+                        <td>
+                            Last Modified by me
+                        </td>
+                        <Router>
+                            <td id="sortRows">
+                                <Link to={`/courses`} className="fa fa fa-sort-alpha-asc">
+                                </Link>
+                            </td>
+                        </Router>
                     </tr>
                     </thead>
                     <tbody>
