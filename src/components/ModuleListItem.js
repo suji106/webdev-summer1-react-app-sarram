@@ -15,8 +15,11 @@ export default class ModuleListItem
 
     deleteModuleItem() {
         // console.log(this.state.module);
-        this.moduleService
-            .deleteModule(this.props.courseId, this.props.module.id).then(this.props.callback);
+        var input = window.confirm("Are you sure?");
+        if (input === true) {
+            this.moduleService
+                .deleteModule(this.props.courseId, this.props.module.id).then(this.props.callback);
+        }
     }
 
     render() {
@@ -24,14 +27,17 @@ export default class ModuleListItem
         console.log("renderingModuleList");
         console.log(this.props);
         return (
-                <div>
-                    <Link to={`/course/${this.props.courseId}/${this.props.module.id}`} className="list-group-item">
-                        {title}
-                        <span className="float-right">
-                        <i className="fa fa-trash" onClick={this.deleteModuleItem}></i>
-                    </span>
-                    </Link>
-                </div>
+            <div className="list-group-item" id="moduleRow">
+
+                <Link to={`/course/${this.props.courseId}/${this.props.module.id}`} id="moduleTitle">
+                    {title}
+                </Link>
+
+                <span className='float-right'>
+                <i className="fa fa-trash" onClick={this.deleteModuleItem}></i>
+
+                </span>
+            </div>
         );
     }
 }

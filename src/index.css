@@ -2,21 +2,87 @@ body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
+    background-color: white;
+    font-weight: 600;
 }
 
 #courseManager {
     font-size: 30px;
-    margin-top: 90px;
+    margin-top: 20px;
+    padding-left: 60px;
+    padding-top: 10px;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+#courseListHeader {
+    text-align: left;
+    font-size: 18px;
+    letter-spacing: 0px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+#ownedBy{
+    padding-right: 10px;
+    margin-left: 10px;
+    text-align: left;
+    font-size: 20px;
+}
+
+#lastModified{
+    font-size: 15px;
+    font-weight: 600;
+    padding-top: 20px;
+    padding-right: 0px;
+}
+
+#delete {
+    padding-right: 50px;
+}
+
+#titleFld{
+    margin-left: 100px;
+    padding-right: 40px;
+    background-color: black;
+    color: white;
+    font-weight: 500;
+}
+
+#moduleInput{
+    text-align: center;
+    margin-bottom: 2px;
+}
+
+#moduleTitle{
+    margin-right: 80px;
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+#moduleRow{
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-bottom: 10px;
+}
+
+#courseInput{
+    padding-right: 110px;
+    padding-left: 50px;
+}
+
+#addCourseButton{
+    padding-bottom: 10px;
+}
+
+.table {
+    background-color: whitesmoke;
 }
 
 #courseHeading {
-    margin-top: 90px;
-    background-color: deepskyblue;
-    padding-right: 10px;
-}
-
-#sortRows{
-    padding-left: 10px;
+    margin-top: 10px;
+    background-color: #dfdfff;
 }
 
 .fa fa-file-text {
@@ -25,17 +91,7 @@ body {
 
 #courseTitle {
     padding-left: 20px;
-}
-
-#courseListHeader {
-    text-align: left;
-    font-size: 15px;
-}
-
-.owned_by_last_mod {
-    text-align: left;
-    font-size: 20px;
-    margin-left: 60px;
+    padding-right: 100px;
 }
 
 #modulesListDiv {
@@ -46,6 +102,26 @@ body {
     background-color: black;
 }
 
-/*.lessonsNavigator {*/
-/*c*/
-/*}*/
+.list-group-item {
+    color: steelblue;
+    text-align: center;
+}
+
+.lessonInto{
+    margin-left: 10px;
+}
+
+#courseHeader {
+    color: black;
+    background-color: white;
+    font-size: 30px;
+}
+
+.courseTitle {
+    margin-left: 20px;
+}
+
+.intoButton {
+    margin-left: 60px;
+    content: 'X';
+}

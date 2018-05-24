@@ -13,9 +13,11 @@ class CourseRow extends React.Component {
     }
 
     deleteCourse() {
-        console.log(this.props.callback);
-        this.courseService
-            .deleteCourse(this.props.course.id).then(this.props.callback);
+        var input = window.confirm("Are you sure?");
+        if (input === true) {
+            this.courseService
+                .deleteCourse(this.props.course.id).then(this.props.callback);
+        }
     }
 
     reRoute(courseId) {
@@ -27,18 +29,18 @@ class CourseRow extends React.Component {
         );
     }
 
-    getNiceTime(time){
+    getNiceTime(time) {
         console.log("logging time");
         var current_date = new Date();
         console.log(current_date);
         var old_time = new Date(time).toDateString();
         var curr_time = new Date(current_date).toDateString();
-        if(old_time !== curr_time) {
+        if (old_time !== curr_time) {
             console.log(old_time);
             console.log(curr_time);
             return old_time;
         }
-        else{
+        else {
             return new Date(time).toLocaleTimeString();
         }
     }
@@ -48,30 +50,26 @@ class CourseRow extends React.Component {
 
         return (
             <Router>
-                    <tr>
-                        <td>
-                            <div className="fa fa-file-text"></div>
-                            <Link to={`/course/${this.props.course.id}`}
-                                  onClick={this.reRoute} id="courseTitle">
-                                {this.props.course.title}
-                            </Link>
-                        </td>
-                        <td className="owned_by_last_mod">
-                            <div>
-                                me
-                            </div>
-                        </td>
-                        <td className="owned_by_last_mod">
-                            <div>
-                                {this.getNiceTime(this.props.course.modified)}
-                            </div>
-                        </td>
-                        <td>
-                            <div className="btn btn-danger" onClick={this.deleteCourse}>
-                                Deleted
-                            </div>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>
+                        <div className="fa fa-file-text"></div>
+                        <Link to={`/course/${this.props.course.id}`}
+                              onClick={this.reRoute} id="courseTitle">
+                            {this.props.course.title}
+                        </Link>
+                    </td>
+                    <td className="owned_by">
+                        me
+                    </td>
+                    <td className="last_mod">
+                        {this.getNiceTime(this.props.course.modified)}
+                    </td>
+                    <td id="delete">
+                        <div className="btn btn-danger" onClick={this.deleteCourse}>
+                            Delete
+                        </div>
+                    </td>
+                </tr>
             </Router>
         )
     }

@@ -22,9 +22,11 @@ export default class LessonListItem
         this.abc = this.abc.bind(this);
         this.createLesson = this.createLesson.bind(this);
         this.titleChanged = this.titleChanged.bind(this);
+
     }
 
     componentWillReceiveProps(newProps) {
+        console.log("newProps");
         this.setModuleId(newProps.moduleId);
         this.findAllLessonsForModule(newProps.moduleId);
     }
@@ -51,12 +53,6 @@ export default class LessonListItem
         console.log("mountedModuleList");
     }
 
-    deleteLesson() {
-        console.log("deletingLesson");
-        this.lessonService
-            .deleteLesson(this.state.lessonId).then(this.abc);
-    }
-
     abc() {
         this.findAllLessonsForModule(this.state.moduleId)
     }
@@ -71,6 +67,14 @@ export default class LessonListItem
         };
     }
 
+    deleteLesson(event) {
+        var input = window.confirm("Are you sure?");
+        if (input === true) {
+            this.lessonService
+                .deleteLesson(event.target.id.replace("deleteLesson", "")).then(this.abc);
+        }
+    }
+
     renderListOfLessons() {
         console.log("renderingLessonsList");
         console.log(this.state);
@@ -80,10 +84,10 @@ export default class LessonListItem
             console.log("returningLessons");
             this.setLessonId(lesson.id);
             return (
-                <li className="nav-item nav-link">
+                <li className="nav-item nav-link bg-primary">
                     {lesson.title}
                     {/*{self.setLessonId(lesson.id)}*/}
-                    <button onClick={self.deleteLesson}>x</button>
+                    <button id={"deleteLesson" + lesson.id} className="lessonInto" onClick={self.deleteLesson}>x</button>
                 </li>
             );
         });
@@ -92,13 +96,18 @@ export default class LessonListItem
     }
 
     createLesson() {
+
+        if(this.state.lesson.title === ""){
+            this.state = {
+                lessonId: this.state.lessonId,
+                moduleId: this.state.moduleId,
+                lesson: {title: "Untitled Lesson"},
+                lessons: this.state.lessons
+            };
+        }
         console.log("creatingLesson");
         this.lessonService
             .createLesson(this.state.moduleId, this.state.lesson.title).then(this.abc);
-
-        this.setState({
-            lesson: {title: ''}
-        });
     }
 
     titleChanged(event) {
