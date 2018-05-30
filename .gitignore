@@ -9,6 +9,12 @@
 # production
 /build
 
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
 # misc
 .DS_Store
 .env.local
@@ -16,6 +22,11 @@
 .env.test.local
 .env.production.local
 
+# examples
+src/examples
+*App*
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+package-lock.json*
