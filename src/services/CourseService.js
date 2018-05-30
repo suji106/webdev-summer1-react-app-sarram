@@ -6,6 +6,7 @@ class CourseService {
     constructor(singletonToken) {
         if (_singleton !== singletonToken)
             throw new Error('Cannot instantiate directly.');
+        this.resolve = this.resolve.bind(this);
     }
 
     static get instance() {
@@ -24,15 +25,16 @@ class CourseService {
 
     createCourse(course) {
         var date = new Date();
+
         var course_json = {
             title: course.title,
             created: date.getTime(),
             modified: date.getTime(),
         };
-        var j = JSON.stringify(course_json);
+        var json_body = JSON.stringify(course_json);
         // console.log(j);
         return fetch(COURSE_API_URL, {
-            body: j,
+            body: json_body,
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -52,11 +54,20 @@ class CourseService {
     getCourseById(courseId) {
         // console.log("gettingCourseByIdCourseService");
         var url = COURSE_API_URL + '/' + courseId;
-        // console.log(url);
-        fetch(url).then((response) => {// console.log("ss");
-            return "aaa";
-        });
-        return "Course Modules";
+        fetch(url, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            method: 'GET'
+        }).then(this.resolve);
+        return courseId;
+    }
+
+    resolve(j) {
+        var x = j.json();
+        console.log(x);
+        return x;
     }
 
     // waiter (response) {

@@ -18,7 +18,7 @@ export default class ModuleService {
                 .replace('CID', courseId))
             .then(function (response) {
                 var j = response.json();
-                // console.log(j);
+                console.log(j);
                 return j;
             })
     }

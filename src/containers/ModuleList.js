@@ -58,7 +58,7 @@ export default class ModuleList extends Component {
         {
             this.state = {
                 courseId: '',
-                module: {title: 'Untitled Course'},
+                module: {title: 'Untitled Module'},
                 modules: [
                 ]
             };
@@ -111,15 +111,16 @@ export default class ModuleList extends Component {
         // console.log(this.state);
         return (
             <div>
-                <h2>{this.getCourseById(this.state.courseId)}</h2>
+                {/*<h2>{this.getCourseById(this.state.courseId)}</h2>*/}
                 {/*<h3>CS500 {this.state.courseId}</h3>*/}
                 <ul className="list-group" id="modulesListDiv">
                     {this.renderListOfModules()}
                 </ul>
                 <div>
-                    <input onChange={this.titleChanged}
+                    <input  id="moduleInput"
+                            onChange={this.titleChanged}
                            value={this.state.module.title}
-                           placeholder="Course Title"
+                           placeholder="Module Name"
                            className="form-control"/>
                     <button onClick={this.createModule} className="btn btn-primary btn-block">
                         <i className="fa fa-plus"></i>

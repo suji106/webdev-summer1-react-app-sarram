@@ -26,7 +26,8 @@ class CourseList extends React.Component {
             .findAllCourses()
             .then((courses) => {
                 console.log(courses);
-                this.setState({courses: courses});
+                this.setState({courses: courses,
+                course: {title:'Untitled Course'}});
             })
     }
 
@@ -39,7 +40,7 @@ class CourseList extends React.Component {
             courses = this.state.courses.map(
                 function (course) {
                     return <CourseRow key={course.id}
-                                      course={course} callback = {self.findAllCourses}/>
+                                      course={course} callback={self.findAllCourses}/>
                 }
             )
         }
@@ -61,44 +62,47 @@ class CourseList extends React.Component {
             .then(() => {
                 this.findAllCourses();
             });
+
+        this.setState({
+            course: {title: ''}
+        });
+
+        this.state.course.title = '';
+        console.log(this.state.course);
+        this.render();
     }
 
     render() {
         console.log("renderingCoursesList");
+
         return (
             <div>
+                <div id="courseHeading">
+                    <td id="courseManager">Course Manager</td>
+                    <td id="courseInput">
+                        <input onChange={this.titleChanged}
+                               className="form-control" id="titleFld"
+                               placeholder="New Course Title"/>
+                    </td>
+                    <td id={"addCourseButton"}>
+                        <button onClick={this.createCourse}
+                                className="btn btn-primary">
+                            Add
+                        </button>
+                    </td>
+                </div>
                 <table className="table">
-                    <thead>
-                    <tr id="courseHeading">
-                        <th id="courseManager">Course Manager</th>
-                        <th><input onChange={this.titleChanged}
-                                   className="form-control" id="titleFld"
-                                   placeholder="CS5000"/></th>
-                        <th>
-                            <button onClick={this.createCourse}
-                                    className="btn btn-primary">
-                                Add
-                            </button>
-                        </th>
-                    </tr>
                     <tr id="courseListHeader">
                         <td>
                             Title
                         </td>
-                        <td>
+                        <td id="ownedBy">
                             Owned By
                         </td>
-                        <td>
+                        <td id="lastModified">
                             Last Modified by me
                         </td>
-                        <Router>
-                            <td id="sortRows">
-                                <Link to={`/courses`} className="fa fa fa-sort-alpha-asc">
-                                </Link>
-                            </td>
-                        </Router>
                     </tr>
-                    </thead>
                     <tbody>
                     {this.renderCourseRows()}
                     </tbody>
