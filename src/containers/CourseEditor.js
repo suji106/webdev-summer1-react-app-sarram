@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route} from 'react-router-dom'
 import ModuleList from './ModuleList'
 import LessonTabs from './LessonTabs'
 import CourseService from "../services/CourseService";
+import ModuleEditor from "./ModuleEditor";
 
 export default class CourseEditor
     extends React.Component {
@@ -66,7 +67,7 @@ export default class CourseEditor
                         </div>
                         <div className="col-8">
                             <Route path="/course/:courseId/:moduleId"
-                                   exact component={LessonTabs}>
+                                   exact component={ModuleEditor}>
                             </Route>
                         </div>
                     </div>

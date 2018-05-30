@@ -23,8 +23,6 @@ export default class ModuleList extends Component {
     }
 
     setModules(modules) {
-        // console.log("settingModules");
-        // console.log(modules);
         this.setState({modules: modules})
     }
 
@@ -127,7 +125,6 @@ export default class ModuleList extends Component {
                     </button>
                     <br/>
                 </div>
-
             </div>
         );
     }
