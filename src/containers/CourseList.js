@@ -1,5 +1,4 @@
 import React from 'react';
-import {BrowserRouter as Router, Link} from 'react-router-dom'
 import CourseRow from "../components/CourseRow";
 import CourseService from "../services/CourseService";
 
