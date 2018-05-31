@@ -10,18 +10,21 @@ const Link = ({widget, preview, changedHref, changedName, changedText}) => {
     return (
         <div>
             <div hidden={preview}>
-                <h2>
-                    Heading {widget.size}
-                </h2>
-                <input onChange={() => changedHref(widget.id, hrefInputElem.value)}
-                       value={widget.href}
-                       ref={node => hrefInputElem = node}/>
-                <input onChange={() => changedText(widget.id, textInputElem.value)}
-                       value={widget.text}
-                       ref={node => textInputElem = node}/>
-                <input onChange={() => changedName(widget.id, nameInputElem.value)}
-                       value={widget.name}
-                       ref={node => nameInputElem = node}/>
+                <div>
+                    <input placeholder="Link" onChange={() => changedHref(widget.id, hrefInputElem.value)}
+                           value={widget.href}
+                           ref={node => hrefInputElem = node}/>
+                </div>
+                <div>
+                    <input placeholder="Link Text" onChange={() => changedText(widget.id, textInputElem.value)}
+                           value={widget.text}
+                           ref={node => textInputElem = node}/>
+                </div>
+                <div>
+                    <input placeholder="Widget Name" onChange={() => changedName(widget.id, nameInputElem.value)}
+                           value={widget.name}
+                           ref={node => nameInputElem = node}/>
+                </div>
                 <h3>
                     Preview
                 </h3>
@@ -31,18 +34,18 @@ const Link = ({widget, preview, changedHref, changedName, changedText}) => {
     )
 }
 
-const dispatchToPropsMapper = dispatch => ({
-    changedText: (widgetId, newText) =>
-        actions.changedText(dispatch, widgetId, newText),
-    changedHref: (widgetId, newHref) =>
-        actions.changedHref(dispatch, widgetId, newHref),
-    changedName: (widgetId, newName) =>
-        actions.changedName(dispatch, widgetId, newName),
+const dispatchToPropertiesMapper = dispatch => ({
+    changedText: (widgetId, textToChange) =>
+        actions.changedText(dispatch, widgetId, textToChange),
+    changedHref: (widgetId, hrefToChange) =>
+        actions.changedHref(dispatch, widgetId, hrefToChange),
+    changedName: (widgetId, nameToChange) =>
+        actions.changedName(dispatch, widgetId, nameToChange),
 })
 
 const stateToPropsMapper = state => ({
     preview: state.preview
 })
 
-const WidgetLinkBox = connect(stateToPropsMapper, dispatchToPropsMapper)(Link)
+const WidgetLinkBox = connect(stateToPropsMapper, dispatchToPropertiesMapper)(Link)
 export default WidgetLinkBox;

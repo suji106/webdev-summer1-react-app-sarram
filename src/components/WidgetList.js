@@ -33,25 +33,28 @@ class List extends React.Component {
         return (
             <div>
                 <div hidden={this.props.preview}>
-                    <h2>
-                        Heading {this.props.widget.size}
-                    </h2>
-                    <textarea onChange={() => this.props.textChanged(this.props.widget.id, inputElem.value)}
+                    <div>
+                    <textarea placeholder="List Items" onChange={() => this.props.textChanged(this.props.widget.id, inputElem.value)}
                               value={this.props.widget.text}
                               ref={node => inputElem = node}/>
-                    <input onChange={() => this.props.nameChanged(this.props.widget.id, inputNameElem.value)}
-                           value={this.props.widget.name}
-                           ref={node => inputNameElem = node}/>
-                    <select onChange={() => this.props.listTypeChanged(this.props.widget.id, selectElem.value)}
-                            value={this.props.widget.listType}
-                            ref={node => selectElem = node}>
-                        <option value="unordered">
-                            Unordered List
-                        </option>
-                        <option value="ordered">
-                            Ordered List
-                        </option>
-                    </select>
+                    </div>
+                    <div>
+                        <input placeholder="Widget Name" onChange={() => this.props.nameChanged(this.props.widget.id, inputNameElem.value)}
+                               value={this.props.widget.name}
+                               ref={node => inputNameElem = node}/>
+                    </div>
+                    <div>
+                        <select onChange={() => this.props.listTypeChanged(this.props.widget.id, selectElem.value)}
+                                value={this.props.widget.listType}
+                                ref={node => selectElem = node}>
+                            <option value="unordered">
+                                Unordered List
+                            </option>
+                            <option value="ordered">
+                                Ordered List
+                            </option>
+                        </select>
+                    </div>
                     <h3>
                         Preview
                     </h3>
@@ -71,21 +74,22 @@ class List extends React.Component {
     }
 }
 
-const dispatchToPropsMapper = dispatch => ({
+const dispatchToPropertiesMapper = dispatch => ({
 
-    textChanged: (widgetId, newText) =>
-        actions.changedText(dispatch, widgetId, newText),
+    textChanged: (widgetId, textToChange) =>
+        actions.changedText(dispatch, widgetId, textToChange),
 
-    nameChanged: (widgetId, newName) =>
-        actions.changedName(dispatch, widgetId, newName),
+    nameChanged: (widgetId, nameToChange) =>
+        actions.changedName(dispatch, widgetId, nameToChange),
 
-    listTypeChanged: (widgetId, newType) =>
-        actions.listTypeChanged(dispatch, widgetId, newType)
+    listTypeChanged: (widgetId, typeToChange) =>
+        actions.listTypeChanged(dispatch, widgetId, typeToChange)
 })
 
-const stateToPropsMapper = state => ({
-    preview: state.preview
+const propsMapperFromState = (state) => ({
+    widgets: state.widgets,
+    previewMode: state.preview
 })
 
-const WidgetListBox = connect(stateToPropsMapper, dispatchToPropsMapper)(List)
+const WidgetListBox = connect(propsMapperFromState, dispatchToPropertiesMapper)(List)
 export default WidgetListBox;

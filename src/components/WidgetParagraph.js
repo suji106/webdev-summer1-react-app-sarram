@@ -8,15 +8,16 @@ const Paragraph = ({widget, preview, changedText, nameChanged}) => {
     return (
         <div>
             <div hidden={preview}>
-                <h2>
-                    Heading {widget.size}
-                </h2>
-                <textarea onChange={() => changedText(widget.id, inputElem.value)}
+                <div>
+                <textarea placeholder="Para Content" onChange={() => changedText(widget.id, inputElem.value)}
                           value={widget.text}
                           ref={node => inputElem = node}/>
-                <input onChange={() => nameChanged(widget.id, inputNameElem.value)}
-                       value={widget.name}
-                       ref={node => inputNameElem = node}/>
+                </div>
+                <div>
+                    <input placeholder="Widget Name" onChange={() => nameChanged(widget.id, inputNameElem.value)}
+                           value={widget.name}
+                           ref={node => inputNameElem = node}/>
+                </div>
                 <h3>
                     Preview
                 </h3>
@@ -30,12 +31,12 @@ const Paragraph = ({widget, preview, changedText, nameChanged}) => {
     )
 }
 
-const dispatchToPropsMapper = dispatch => ({
-    changedText: (widgetId, newText) =>
-        actions.changedText(dispatch, widgetId, newText),
+const dispatchToPropertiesMapper = dispatch => ({
+    changedText: (widgetId, textToChange) =>
+        actions.changedText(dispatch, widgetId, textToChange),
 
-    nameChanged: (widgetId, newName) =>
-        actions.changedName(dispatch, widgetId, newName),
+    nameChanged: (widgetId, nameToChange) =>
+        actions.changedName(dispatch, widgetId, nameToChange),
 
 })
 
@@ -43,5 +44,5 @@ const stateToPropsMapper = state => ({
     preview: state.preview
 })
 
-const WidgetParagraphBox = connect(stateToPropsMapper, dispatchToPropsMapper)(Paragraph)
+const WidgetParagraphBox = connect(stateToPropsMapper, dispatchToPropertiesMapper)(Paragraph)
 export default WidgetParagraphBox;

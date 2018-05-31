@@ -30,7 +30,7 @@ export default class LessonListItem
                     {this.props.lesson.title}
                 </Link>
                 <button id={"deleteLesson" + this.props.lesson.id} onClick={self.deleteLesson}
-                        className="glyphicon glyphicon-plus">
+                        className="lesson-del glyphicon glyphicon-plus">
                     <span aria-hidden="true">
                         &times;
                     </span>

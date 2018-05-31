@@ -15,12 +15,78 @@ body {
     font-weight: 600;
 }
 
+.lesson-del{
+    margin-left: 10px;
+    padding-right: 2px;
+    padding-left: 2px;
+}
+
 #courseListHeader {
     text-align: left;
     font-size: 18px;
     letter-spacing: 0px;
     font-weight: 600;
     font-size: 20px;
+}
+
+#one-widget {
+    border: 3px solid black;
+    border-radius: 10px;
+    margin-top: 20px;
+    background-color: whitesmoke;
+}
+
+.add-btn{
+    margin-left: 40px;
+    color: maroon;
+    background-color: grey;
+}
+
+#save{
+    margin-left: 10px;
+    color: maroon;
+}
+
+input{
+    margin-bottom: 10px;
+    text-align: center;
+    background-color: black;
+    color: white;
+}
+
+select{
+    margin-bottom: 10px;
+    margin-left: 20px;
+    padding-left: 5px;
+    text-align: center;
+    background-color: brown;
+    color: lavender;
+}
+
+.pad-20 {
+    margin-left: 20px;
+}
+
+.delete-widget{
+    color: maroon;
+    margin-left: 75px;
+    margin-top: 10px;
+}
+
+.widget-type-box{
+    padding-left: 20px;
+    margin-left: 10px;
+}
+
+#preview-save{
+    padding-bottom: 30px;
+    padding-top: 30px;
+    padding-right: 5px;
+}
+
+#image-preview{
+    width: 250px;
+    height: 200px
 }
 
 #list-of-lessons{

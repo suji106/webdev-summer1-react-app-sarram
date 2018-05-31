@@ -1,55 +1,55 @@
 import * as constants from "../constants/WidgetConstants"
 
-export const changedText = (dispatch, widgetId, newText) => (
+export const changedText = (dispatch, widgetId, textToChange) => (
     dispatch({
-        type: constants.TEXT_CHANGED,
+        type: constants.CHANGED_TEXT,
         id: widgetId,
-        text: newText
+        text: textToChange
     })
 )
-export const headingSizeChanged = (dispatch, widgetId, newSize) => (
+export const headingSizeChanged = (dispatch, widgetId, sizeToChange) => (
     dispatch({
-        type: constants.HEADING_SIZE_CHANGED,
+        type: constants.CHANGED_SIZE_HEADING,
         id: widgetId,
-        size: newSize
-    })
-)
-
-export const listTypeChanged = (dispatch, widgetId, newType) => (
-    dispatch({
-        type: constants.LIST_TYPE_CHANGED,
-        id: widgetId,
-        listType: newType
+        size: sizeToChange
     })
 )
 
-export const changedName = (dispatch, widgetId, newName) => (
+export const listTypeChanged = (dispatch, widgetId, typeToChange) => (
     dispatch({
-        type: constants.NAME_CHANGED,
+        type: constants.CHANGED_LIST_TYPE,
         id: widgetId,
-        name: newName
+        listType: typeToChange
+    })
+)
+
+export const changedName = (dispatch, widgetId, nameToChange) => (
+    dispatch({
+        type: constants.CHANGED_NAME,
+        id: widgetId,
+        name: nameToChange
     })
 )
 
 export const srcChanged = (dispatch, widgetId, newSrc) => (
     dispatch({
-        type: constants.SRC_CHANGED,
+        type: constants.CHANGED_SRC,
         id: widgetId,
         src: newSrc
     })
 )
 
-export const changedHref = (dispatch, widgetId, newHref) => (
+export const changedHref = (dispatch, widgetId, hrefToChange) => (
     dispatch({
-        type: constants.HREF_CHANGED,
+        type: constants.CHANGED_HREF,
         id: widgetId,
-        href: newHref
+        href: hrefToChange
     })
 )
 
 export const findAllWidgetsForLesson = (dispatch, lessonId) => {
     console.log("findingAllWidgets");
-    fetch('http://localhost:8080/api/lesson/' + lessonId + "/widget")
+    fetch('https://s-arram.herokuapp.com/api/lesson/' + lessonId + "/widget")
         .then(response => (response.json()))
         .catch((e) => console.log(e))
         .then(widgets => dispatch({

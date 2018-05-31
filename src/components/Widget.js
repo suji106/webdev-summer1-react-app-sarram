@@ -11,14 +11,13 @@ const Widget = ({widget, preview, dispatch}) => {
     let selectElement
     console.log("widgetBox");
     return (
-        <li>
-            <div hidden={preview}>
-                {widget.id} {widget.widgetType}
-
-                <select value={widget.widgetType}
+        <div id="one-widget">
+            <div hidden={preview} className="pad-20">
+                {widget.widgetType}
+                <select id="widget-type-box" value={widget.widgetType}
                         onChange={e =>
                             dispatch({
-                                type: 'SELECT_WIDGET_TYPE',
+                                type: 'WIDGET_SELECT_TYPE',
                                 id: widget.id,
                                 widgetType: selectElement.value
                             })} ref={node => selectElement = node}>
@@ -29,19 +28,20 @@ const Widget = ({widget, preview, dispatch}) => {
                     <option>Image</option>
                 </select>
 
-                <button onClick={e => (
+                <button className="btn delete-widget" onClick={e => (
                     dispatch({type: DELETE_WIDGET, id: widget.id})
-                )}>Delete
+                )}>
+                    Delete!!
                 </button>
             </div>
-            <div>
+            <div className="pad-20">
                 {widget.widgetType === 'Heading' && <WidgetHeadingBox widget={widget}/>}
                 {widget.widgetType === 'Paragraph' && <WidgetParagraphBox widget={widget}/>}
                 {widget.widgetType === 'List' && <WidgetListBox widget={widget}/>}
                 {widget.widgetType === 'Image' && <WidgetImageBox widget={widget}/>}
                 {widget.widgetType === 'Link' && <WidgetLinkBox widget={widget}/>}
             </div>
-        </li>
+        </div>
     )
 }
 

@@ -7,24 +7,26 @@ class WidgetList extends Component {
     constructor(props) {
         console.log("widgetListEditorConstructor");
         super(props)
+        this.state = {lessonId: ''};
         this.saveChanges = this.saveChanges.bind(this);
     }
 
     saveChanges() {
         this.props.save(this.state.lessonId);
+        alert("Save Successful :)");
     }
 
     componentWillReceiveProps(newProps) {
         console.log(newProps);
         this.setState({lessonId: newProps.lessonId});
+        if(this.props.lessonId != newProps.lessonId) {
+            this.props.findAllWidgetsForLesson(newProps.lessonId);
+        }
     }
 
     componentDidMount() {
         console.log(this.props);
         this.setState({lessonId: this.props.lessonId});
-        if (!(this.props.lessonId === 'undefined')) {
-            this.props.findAllWidgetsForLesson(this.props.lessonId);
-        }
     }
 
     render() {
@@ -32,14 +34,15 @@ class WidgetList extends Component {
         console.log(this.props);
         return (
             <div>
-                <div className='float-right'>
-                    <h1>
-                        Widget List {this.props.widgets.length}
-                    </h1>
+                <div id="preview-save">
+                    <button id="save" className="float-right btn" disabled={this.props.previewMode} onClick={this.saveChanges}>
+                        Save!
+                    </button>
+
+                    <button className="float-right btn" onClick={this.props.preview}>
+                        Preview!
+                    </button>
                 </div>
-                <button className="float-right" disabled={this.props.previewMode} onClick={this.saveChanges}>
-                    Save!
-                </button>
 
                 <ul>
                     {this.props.widgets.map(widget => (
@@ -48,7 +51,8 @@ class WidgetList extends Component {
                                    key={widget.id}/>
                     ))}
                 </ul>
-                <button onClick={this.props.addWidget}>
+
+                <button className="add-btn btn" onClick={this.props.addWidget}>
                     Add Widget!!
                 </button>
             </div>
@@ -64,13 +68,13 @@ const dispatcherToPropsMapper
     preview: () => actions.preview(dispatch)
 })
 
-const stateToPropertiesMapper = (state) => ({
+const propsMapperFromState = (state) => ({
     widgets: state.widgets,
     previewMode: state.preview
 })
 
 const WidgetListBox = connect(
-    stateToPropertiesMapper,
+    propsMapperFromState,
     dispatcherToPropsMapper)(WidgetList)
 
 export default WidgetListBox

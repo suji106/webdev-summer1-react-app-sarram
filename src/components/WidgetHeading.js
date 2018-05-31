@@ -10,28 +10,33 @@ const Heading = ({widget, preview, textChanged, headingSizeChanged, nameChanged}
     return (
         <div>
             <div hidden={preview}>
-                <h2>
-                    Heading {widget.size}
-                </h2>
-                <input onChange={() => textChanged(widget.id, inputTextElem.value)}
-                       value={widget.text}
-                       ref={node => inputTextElem = node}/>
-                <input onChange={() => nameChanged(widget.id, inputNameElem.value)}
-                       value={widget.name}
-                       ref={node => inputNameElem = node}/>
-                <select onChange={() => headingSizeChanged(widget.id, selectElem.value)}
-                        value={widget.size}
-                        ref={node => selectElem = node}>
-                    <option value="1">
-                        Heading 1
-                    </option>
-                    <option value="2">
-                        Heading 2
-                    </option>
-                    <option value="3">
-                        Heading 3
-                    </option>
-                </select>
+                <div>
+                    <div>
+                        <input placeholder="Heading!" onChange={() => textChanged(widget.id, inputTextElem.value)}
+                               value={widget.text}
+                               ref={node => inputTextElem = node}/>
+                    </div>
+                    <div>
+                        <input placeholder="Widget Name!" onChange={() => nameChanged(widget.id, inputNameElem.value)}
+                               value={widget.name}
+                               ref={node => inputNameElem = node}/>
+                    </div>
+                    <div>
+                        <select onChange={() => headingSizeChanged(widget.id, selectElem.value)}
+                                value={widget.size}
+                                ref={node => selectElem = node}>
+                            <option value="1">
+                                Heading 1
+                            </option>
+                            <option value="2">
+                                Heading 2
+                            </option>
+                            <option value="3">
+                                Heading 3
+                            </option>
+                        </select>
+                    </div>
+                </div>
 
                 <h3>
                     Preview
@@ -55,18 +60,18 @@ const Heading = ({widget, preview, textChanged, headingSizeChanged, nameChanged}
     )
 }
 
-const dispatchToPropsMapper = dispatch => ({
-    textChanged: (widgetId, newText) =>
-        actions.changedText(dispatch, widgetId, newText),
-    nameChanged: (widgetId, newName) =>
-        actions.changedName(dispatch, widgetId, newName),
-    headingSizeChanged: (widgetId, newSize) =>
-        actions.headingSizeChanged(dispatch, widgetId, newSize)
+const dispatchToPropertiesMapper = dispatch => ({
+    textChanged: (widgetId, textToChange) =>
+        actions.changedText(dispatch, widgetId, textToChange),
+    nameChanged: (widgetId, nameToChange) =>
+        actions.changedName(dispatch, widgetId, nameToChange),
+    headingSizeChanged: (widgetId, sizeToChange) =>
+        actions.headingSizeChanged(dispatch, widgetId, sizeToChange)
 })
 
 const stateToPropsMapper = state => ({
     preview: state.preview
 })
 
-const WidgetHeadingBox = connect(stateToPropsMapper, dispatchToPropsMapper)(Heading)
+const WidgetHeadingBox = connect(stateToPropsMapper, dispatchToPropertiesMapper)(Heading)
 export default WidgetHeadingBox;
