@@ -35,6 +35,7 @@ export default class LessonTabs
 
     setLessons(lessons) {
         console.log("settingModules");
+        console.log(lessons);
         this.setState({lessons: lessons})
     }
 
@@ -104,15 +105,18 @@ export default class LessonTabs
         return (
             <div className="nav nav-tabs" id="list-of-lessons">
                 {this.renderListOfLessons()}
-                <ul className="nav-item nav-link">
+                <ul>
                     <td>
                         <input onChange={this.titleChanged}
                                value={this.state.lesson.title}
-                               placeholder="Course Title"
+                               placeholder="Lesson Name"
                                className="form-control"/>
                     </td>
                     <td>
-                        <button onClick={this.createLesson}>+</button>
+                        <button classname="glyphicon glyphicon-plus" onClick={this.createLesson}>
+                            <span aria-hidden="true">+
+                            </span>
+                        </button>
                     </td>
                 </ul>
             </div>

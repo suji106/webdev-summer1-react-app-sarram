@@ -55,13 +55,14 @@ export default class CourseEditor
             <Router>
                 <div>
                     <div id="courseHeader">
-                        <td id="intoButtons" classType="fa fa-close" onClick={this.routeToManager}>
-                            <button>X</button>
+                        <td onClick={this.routeToManager}>
+                            <button type="button" className="close" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </td>
-                        <td id="courseTitle">Module List for Course ID: {this.getCourseById(this.state.courseId)}</td>
+                        <td id="courseTitle">Course ID: {this.getCourseById(this.state.courseId)}</td>
                     </div>
                     <div className="row">
-
                         <div className="col-4">
                             <ModuleList courseId={this.state.courseId}/>
                         </div>

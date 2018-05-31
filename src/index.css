@@ -23,11 +23,21 @@ body {
     font-size: 20px;
 }
 
+#list-of-lessons{
+    height: 40px;
+}
+
 #ownedBy{
     padding-right: 10px;
     margin-left: 10px;
     text-align: left;
     font-size: 20px;
+}
+
+#lesson-tab {
+    margin-right: 10px;
+    line-height: 15px;
+    height: 40px;
 }
 
 #lastModified{
@@ -124,4 +134,8 @@ body {
 .intoButton {
     margin-left: 60px;
     content: 'X';
+}
+
+#lesson-link {
+    color: black;
 }

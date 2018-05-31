@@ -1,7 +1,6 @@
 import React from 'react';
 import {BrowserRouter as Router, Link, Route} from 'react-router-dom'
 import ModuleService from "../services/ModuleService";
-import WidgetListContainer from '../containers/WidgetListEditor'
 
 export default class ModuleListItem
     extends React.Component {
@@ -27,24 +26,13 @@ export default class ModuleListItem
         console.log("renderingModuleList");
         console.log(this.props);
         return (
-
                 <div className="list-group-item" id="moduleRow">
-
                     <Link to={`/course/${this.props.courseId}/${this.props.module.id}`} id="moduleTitle">
                         {title}
                     </Link>
-
                     <span className='float-right'>
                         <i className="fa fa-trash" onClick={this.deleteModuleItem}></i>
                     </span>
-
-                    {/*<div id="lessonEditor">*/}
-                        {/*<p>Lesson Editor :)</p>*/}
-                        {/*<Route path="/lesson/:lessonId"*/}
-                               {/*exact component={WidgetListContainer}>*/}
-                        {/*</Route>*/}
-                    {/*</div>*/}
-
                 </div>
         );
     }

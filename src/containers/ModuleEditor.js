@@ -1,7 +1,7 @@
 import React from 'react';
 import LessonTabs from './LessonTabs';
-import WidgetListContainer from './WidgetListEditor'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
+import WidgetListEditor from "./WidgetListEditor";
 
 export default class ModuleEditor
     extends React.Component {
@@ -13,7 +13,7 @@ export default class ModuleEditor
     }
 
     componentDidMount() {
-
+        this.setState({moduleId: this.props.match.params.moduleId});
     }
 
     componentWillReceiveProps(newProps) {
@@ -25,11 +25,11 @@ export default class ModuleEditor
         console.log(this.state.moduleId);
         return (
             <Router>
-                <div>
+                <div id="module-editor">
                     <LessonTabs moduleId={this.state.moduleId}/>
                     <div id="lesson-editor">
                         <Route path="/lesson/:lessonId"
-                               exact component={WidgetListContainer}>
+                               exact component={WidgetListEditor}>
                         </Route>
                     </div>
                 </div>

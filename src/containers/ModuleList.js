@@ -105,12 +105,8 @@ export default class ModuleList extends Component {
     }
 
     render() {
-        // console.log("renderingModuleList");
-        // console.log(this.state);
         return (
             <div>
-                {/*<h2>{this.getCourseById(this.state.courseId)}</h2>*/}
-                {/*<h3>CS500 {this.state.courseId}</h3>*/}
                 <ul className="list-group" id="modulesListDiv">
                     {this.renderListOfModules()}
                 </ul>

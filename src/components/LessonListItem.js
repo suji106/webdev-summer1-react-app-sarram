@@ -1,5 +1,6 @@
 import React from 'react';
 import LessonService from "../services/LessonService";
+import {Link} from 'react-router-dom'
 
 export default class LessonListItem
     extends React.Component {
@@ -24,9 +25,16 @@ export default class LessonListItem
         console.log(this.props);
         var self = this;
         return (
-            <li className="nav-item nav-link bg-primary">
-                {this.props.lesson.title}
-                <button id={"deleteLesson" + this.props.lesson.id} className="lessonInto" onClick={self.deleteLesson}>x</button>
+            <li className="nav-item nav-link bg-primary" id="lesson-tab">
+                <Link to={`/lesson/${this.props.lesson.id}`} id="lesson-link">
+                    {this.props.lesson.title}
+                </Link>
+                <button id={"deleteLesson" + this.props.lesson.id} onClick={self.deleteLesson}
+                        className="glyphicon glyphicon-plus">
+                    <span aria-hidden="true">
+                        &times;
+                    </span>
+                </button>
             </li>
         )
     }

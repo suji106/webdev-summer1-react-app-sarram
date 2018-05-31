@@ -51,27 +51,6 @@ export default class LessonService {
             });
     }
 
-
-
-    // createModule(courseId, module) {
-    //     // console.log("creatingModule");
-    //     var date = new Date();
-    //     var model_json = {
-    //         title: module.title,
-    //         modified: date.getTime(),
-    //     };
-    //
-    //     // console.log()
-    //     return fetch(MODULE_API_URL.replace('CID', courseId),
-    //         {
-    //             body: JSON.stringify(model_json),
-    //             headers: {'Content-Type': 'application/json'},
-    //             method: 'POST'
-    //         }).then(function (response) {
-    //         return response.json();
-    //     })
-    // }
-
     static get instance() {
         console.log("insideLessonServiceInstance");
         if (!this[_singleton])
