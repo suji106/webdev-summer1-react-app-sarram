@@ -1,7 +1,7 @@
 const LESSON_API_URL =
-    'http://s-arram-react.herokuapp.com/api/course/MID/lesson';
+    'http://s-arram.herokuapp.com/api/course/MID/lesson';
 const LESSON_DELETE_CREATE_API_URL =
-    'http://s-arram-react.herokuapp.com/api/lesson';
+    'http://s-arram.herokuapp.com/api/lesson';
 
 let _singleton = Symbol();
 export default class LessonService {

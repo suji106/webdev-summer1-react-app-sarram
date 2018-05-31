@@ -1,6 +1,6 @@
 let _singleton = Symbol();
 const COURSE_API_URL =
-    'http://s-arram-react.herokuapp.com/api/course';
+    'http://s-arram.herokuapp.com/api/course';
 
 class CourseService {
     constructor(singletonToken) {
