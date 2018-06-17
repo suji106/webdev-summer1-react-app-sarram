@@ -1,2 +1,2 @@
 * java app is installed on heroku, and the same heroku host is used for fetching the data from backend. If running the java application on localhost, please change the url from s-arram.herokupp.com to localhost:8080 where required.
-* Please enalble "load unsafe scripts" on the browser to load content, if the page shows no data. This is needed because the backend url is set to "http" and not tp "https".
+* Please enable "load unsafe scripts" on the browser to load content, if the page shows no data. This is needed because the backend url is set to "http" and not tp "https".
